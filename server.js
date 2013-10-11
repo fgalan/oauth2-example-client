@@ -1,6 +1,7 @@
 var express = require('express');
 var OAuth2 = require('./oauth2').OAuth2;
 var config = require('./config');
+var http = require('http');
 
 
 // Express configuration
@@ -49,8 +50,28 @@ app.get('/', function(req, res){
     } else {
 
         var user = JSON.parse(req.session.user);
-        //res.send("Welcome " + user.displayName + "<br> Your email address is " + user.email);
-        res.send("Welcome " + user.displayName + "<br> Your email address is " + user.email + "<br> Auth token is: " + auth_token);
+
+        var optionsget = {
+            host : 'orion.lab.fi-ware.eu',
+            port : 1026,
+            path : '/version',
+            method : 'GET',
+            headers: {
+                'X-Auth-Token': auth_token
+            }
+        };
+
+        var reqGet = http.request(optionsget, function(response) {
+            response.on('data', function(data) { 
+                  res.send("Welcome " + user.displayName + "<br> Your email address is " + user.email + "<br> Orion version is: " + data);
+            });
+        });
+
+        reqGet.end();
+        reqGet.on('error', function(e) {
+            console.error(e);
+        });
+
     }
 });
 
