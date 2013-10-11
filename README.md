@@ -18,7 +18,8 @@ Oauth2 authentication example for FI-WARE GE applications
 
 	sudo node server
 
-- Connect to http://localhost to try the example 
+- Connect to http://localhost to try the example. You will see a text with the Orion Context Broker (running at 
+  orion.lab.fi-ware.eu:1026) version string
 
 * Connect to http://localhost/logout to delete session cookies once you have logout in IDM portal
 
