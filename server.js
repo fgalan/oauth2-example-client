@@ -19,6 +19,8 @@ app.configure(function () {
     app.use(express.static(__dirname + '/public'));
 });
 
+// Global variable to store auth_token
+var auth_token
 
 // Config data from config.js file
 var client_id = config.client_id;
@@ -47,7 +49,8 @@ app.get('/', function(req, res){
     } else {
 
         var user = JSON.parse(req.session.user);
-        res.send("Welcome " + user.displayName + "<br> Your email address is " + user.email);
+        //res.send("Welcome " + user.displayName + "<br> Your email address is " + user.email);
+        res.send("Welcome " + user.displayName + "<br> Your email address is " + user.email + "<br> Auth token is: " + auth_token);
     }
 });
 
@@ -59,6 +62,9 @@ app.get('/login', function(req, res){
 
         // Stores the access_token in a session cookie
         req.session.oauth_token = results.access_token;
+
+        //console.log('token: ' + results.access_token)
+        auth_token = results.access_token
 
         var url = config.idmURL + '/user/';
 
