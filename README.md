@@ -16,7 +16,7 @@ this is the relevant part in server.js file:
         };
 ```
 
-However, you can adapt this example to send more interesting NGSI request :)
+However, you can adapt this example to send more interesting NGSI requests :)
 
 ## Running it
 
