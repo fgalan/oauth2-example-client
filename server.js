@@ -63,7 +63,7 @@ app.get('/', function(req, res){
 
         var reqGet = http.request(optionsget, function(response) {
             response.on('data', function(data) { 
-                  res.send("Welcome " + user.displayName + "<br> Your email address is " + user.email + "<br> Orion version is: " + data);
+                  res.send("Welcome " + user.displayName + "<br> Your email address is " + user.email + "<br> Orion version is: " + data + "<br> Auth Token: " + auth_token);
             });
         });
 
