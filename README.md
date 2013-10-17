@@ -1,7 +1,24 @@
-oauth2-example-client
-===================
+oauth2-example-orion-client
+===========================
 
-Oauth2 authentication example for FI-WARE GE applications
+Oauth2 authentication example for Orion Context Broker applications. The example shows how to send a 'version/' request,
+this is the relevant part in server.js file:
+
+```
+        var optionsget = {
+            host : 'orion.lab.fi-ware.eu',
+            port : 1026,
+            path : '/version',
+            method : 'GET',
+            headers: {
+                'X-Auth-Token': auth_token
+            }
+        };
+```
+
+However, you can adapt this example to send more interesting NGSI requests :)
+
+## Running it
 
 - Software requirements:
 
