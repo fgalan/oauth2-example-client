@@ -40,3 +40,7 @@ However, you can adapt this example to send more interesting NGSI requests :)
 
 * Connect to http://localhost/logout to delete session cookies once you have logout in IDM portal
 
+## Quick way
+
+You can also run the token_script.sh script (authored by Universidad Politecnica de Madrid team) in order 
+to get a fresh X-Auth-Token. The program will ask you your FI-LAB user, password and organization ID.
