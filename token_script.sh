@@ -5,12 +5,12 @@ read -p "Username: " USER
 read -s -p "Password: " PASSWORD
 echo ""
 
-RESP=`curl -s -d "{\"auth\": {\"passwordCredentials\": {\"username\":\"$USER\", \"password\":\"$PASSWORD\"}}}" -H"Content-type: application/json" http://cloud.lab.fi-ware.eu:4730/v2.0/tokens`
+RESP=`curl -s -d "{\"auth\": {\"passwordCredentials\": {\"username\":\"$USER\", \"password\":\"$PASSWORD\"}}}" -H"Content-type: application/json" http://cloud.lab.fi-ware.org:4730/v2.0/tokens`
 
 
 TOKEN=`echo $RESP | sed "s/{\"access\":{\"token\":{.*\"id\":\"\(.*\)\"},\"user.*$/\1/g"`
 echo -e "\nAccess Token: $TOKEN"
-ORGS=`curl -s -H"x-auth-token: $TOKEN" http://cloud.lab.fi-ware.eu:4730/v2.0/tenants`
+ORGS=`curl -s -H"x-auth-token: $TOKEN" http://cloud.lab.fi-ware.org:4730/v2.0/tenants`
 
 echo -e "\nOrganizations: "  
 set ORGS2=$ORGS
@@ -21,7 +21,7 @@ read -p "Select an organization from the list above (ID): " ORG
 
 BODY='{"auth": {"token":{"id": "'$TOKEN'"}, "tenantId": "'$ORG'"}}'
 
-RESP1=`curl -s -X POST -H "Content-Type: application/json" -d "$BODY" http://cloud.lab.fi-ware.eu:4730/v2.0/tokens`
+RESP1=`curl -s -X POST -H "Content-Type: application/json" -d "$BODY" http://cloud.lab.fi-ware.org:4730/v2.0/tokens`
 
 TOKEN=`echo $RESP1 | sed "s/{\"access\":{\"token\":{.*\"id\":\"\(.*\)\",\"tenant.*$/\1/g"`
 
