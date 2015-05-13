@@ -8,7 +8,7 @@ echo ""
 RESP=`curl -s -d "{\"auth\": {\"passwordCredentials\": {\"username\":\"$USER\", \"password\":\"$PASSWORD\"}}}" -H"Content-type: application/json" http://cloud.lab.fi-ware.org:4730/v2.0/tokens`
 
 
-TOKEN=`echo $RESP | sed "s/{\"access\":{\"token\":{.*\"id\":\"\(.*\)\"},\"user.*$/\1/g"`
+TOKEN=`echo $RESP | sed "s/{\"access\": {\"token\": {.*\"id\": \"\(.*\)\", \"audit_id.*$/\1/g"`
 echo -e "\nAccess Token: $TOKEN"
 ORGS=`curl -s -H"x-auth-token: $TOKEN" http://cloud.lab.fi-ware.org:4730/v2.0/tenants`
 
