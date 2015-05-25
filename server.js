@@ -52,7 +52,7 @@ app.get('/', function(req, res){
         var user = JSON.parse(req.session.user);
 
         var optionsget = {
-            host : 'orion.lab.fi-ware.eu',
+            host : 'orion.lab.fiware.org',
             port : 1026,
             path : '/version',
             method : 'GET',
